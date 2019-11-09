@@ -50,5 +50,5 @@ SELECT
 	(SELECT AVG(TIMESTAMPDIFF(DAY, p.data_prestito, p.data_restituzione))
 	 FROM prestiti as p
 	 WHERE p.data_restituzione IS NOT NULL
-	 AND p.U_ID = u.U_ID)
+	 AND p.U_ID = u.U_ID) as prestito_medio
 FROM utenti as u
