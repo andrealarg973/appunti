@@ -76,7 +76,7 @@ Condizione che deve essere verificata dai record di una tabella:
 /*
 	2. Vincoli INTER-RELAZIONALI (sono convolte più tabelle) -> nella tabella persone posso inserire un codice lingua se e solo se esiste in una altra tabella; la tua comune di nascita lo posso inserire solo se è presente in una tabella con tutti i codice comune
 
-	- Vincolo di chiave esterna (VINCOLO DI INTEGRITA' REFERENZIALE)
+	- Vincolo di chiave esterna (o VINCOLO DI INTEGRITA' REFERENZIALE)
 	
 	ARTISTI
 	____________________________________________
@@ -96,20 +96,24 @@ Condizione che deve essere verificata dai record di una tabella:
 	 cognome ...,
 	 naz_nascita char(3) NULL,
 	 FOREIGN KEY(naz_nascita) REFERENCES nazioni(cod) --> CHIAVE ESTERNA
-	 ON DELETE(_*_)
+	 ON DELETE _*_ --> Politiche di aggiornamento e cancellazione
 	 -- OPPURE
-	 ON UPDATE(|*|))"
-
-	 /*
-	 	_*_ opzioni:
-	 	- CASCADE -> cancella anche tutti i record nella tabella artisti il naz_nascita cancellato
+	 ON UPDATE |*|)"
+	 //Tabella referente (o INTERNA o SLAVE o DETAIL): artisiti
+	 //Tabella referenziata (o ESTERNA o MASTER): nazioni; il cmapo deve essere primary o unique key
+	/*
+		_*_ opzioni:
+		- CASCADE -> cancella anche tutti i record nella tabella artisti il naz_nascita cancellato
 		- SET NULL -> cancello la spagna, nella tabella artiti quelli con spagna diventano null
 		- NO ACTION -> proibisce l'azione (di default)
+		- SET DEFAULT -> imposta un valore di default
 
 		|*| opzioni:
-		
-
-	 */
+		- CASCADE
+		- SET NULL
+		- NO ACTION (di default)
+		- SET DEFAULT
+	*/
 
 	"CREATE TABLE nazioni(
 	 cod char(3) PRIMARY KEY,
