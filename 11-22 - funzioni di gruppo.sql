@@ -47,3 +47,21 @@ FROM cities
 WHERE pop > 200000
 GROUP BY nazione
 HAVING count(*) > 100
+/*
+		utenti
++-----------+-----------+
+|id_utente P|	email	|
++-----------+-----------+
+		telefoni
++-----------+------------+----------+
+|id_utente P|n_telefono	P|  descriz	|
++-----------+------------+----------+
+*/
+
+-- per ogni u lista dei numeri di telefono
+SELECT
+	id_utente,
+	count(*) as count_num,
+	GROUP_CONCAT(n_telefono) as nums
+FROM telefoni
+GROUP BY id_utente
