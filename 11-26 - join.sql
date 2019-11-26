@@ -22,5 +22,31 @@ SELECT
 	p.nazione,
 	n.nome
 FROM persone AS p
-JOIN nazioni AS n 
-	ON p.nazione = n.nazione
+/*INNER*/ JOIN nazioni AS n ON p.nazione = n.nazione
+
+-- OUTER JOIN
+
+
+
+-- LEFT JOIN
+-- Associa i valori secondo la condizione dell' ON, e con i record NULL crea
+-- un record fittizio settato a NULL
+SELECT
+	p.nome,
+	p.nzione,
+	n.nome
+FROM persone AS p
+LEFT JOIN nazioni AS n ON p.nazione = n.nazione
+
+-- RIGHT JOIN
+-- Join interno + record della tabella destra che non 
+-- hanno associazioni con l'altra tablella
+SELECT
+	p.*,
+	n.*
+FROM persone AS p
+RIGHT JOIN nazioni AS n ON n.nazioni = p.nazioni
+
+
+-- FULL OUTER JOIN (non implementato)
+-- Prende tutti i record + i record non associati da entrambe le tabelle
