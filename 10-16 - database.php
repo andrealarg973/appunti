@@ -17,7 +17,7 @@ Esistono vari tipi di DMBS:
 	- gerarchici, 
 	- RELAZIONALI -> RDMBS, si può pensare a una tabella
 
-Il linguaggio pi diffuso per comunicare con un RDBMS si chiama SQL (Structured Query Language):
+Il linguaggio più diffuso per comunicare con un RDBMS si chiama SQL (Structured Query Language):
 	- DDL -> Data Definition Language
 	- DML -> Data Manipulation Language -> inserimento/aggiornamento/cancellazione
 	inserisco dei dati|modifico il contenuto|aggiungo la colonna email
@@ -31,7 +31,7 @@ Il linguaggio pi diffuso per comunicare con un RDBMS si chiama SQL (Structured Q
 	- QL(sottoinsieme del DML) -> Query Language per le operazioni di ricerca nel database, dette QUERY o interrogazioni
 
 ESEMPI DI DBMS DIFFUSI:
-	- OACLE -> commerciale, per aziende
+	- ORACLE -> commerciale, per aziende
 	- SQL Server (Microsoft) -> commerciale
 	- Access (Microsoft) -> per piccole applicazioni
 	- MySQL(comprato da ORACLE)/MariaDB -> gratuiti e open source
