@@ -21,11 +21,12 @@ Il linguaggio pi diffuso per comunicare con un RDBMS si chiama SQL (Structured Q
 	- DDL -> Data Definition Language
 	- DML -> Data Manipulation Language -> inserimento/aggiornamento/cancellazione
 	inserisco dei dati|modifico il contenuto|aggiungo la colonna email
-	|-------|-----------|-------|
+	+-------+-----------+-------+
 	|nome	|telefono	|email 	|
 	|-------|-----------|-------|
 	|mario 	|3565412874	|#######|
-	|-------|-----------|-------|
+	+-------+-----------+-------+
+
 	
 	- QL(sottoinsieme del DML) -> Query Language per le operazioni di ricerca nel database, dette QUERY o interrogazioni
 
@@ -48,10 +49,10 @@ CREATE TABLE table_name (
 	email VARCHAR(60)
 );
 crea la tavola vuota
-|-------|-----------|-------|
++-------+-----------+-------+
 |nome	|telefono	|email 	|
-|-------|-----------|-------|
++-------+-----------+-------+
 |	 	|			|		|
-|-------|-----------|-------|
++-------+-----------+-------+
 */
 ?>
