@@ -50,3 +50,18 @@ RIGHT JOIN nazioni AS n ON n.nazioni = p.nazioni
 
 -- FULL OUTER JOIN (non implementato)
 -- Prende tutti i record + i record non associati da entrambe le tabelle
+
+SELECT *
+FROM utenti AS u
+LEFT JOIN ordini AS o
+ON u.id_utente = o.id_utente
+WHERE o.id_utente = NULL
+
+SELECT
+	u.id_utente,
+	u.nome,
+	u.cognome
+	count(o.id_ordine) AS cont
+FROM utenti AS u
+LEFT JOIN ordini AS o ON u.id_utent=o.id_utente
+GROUP BY u.id_utente, u.nome, u.cognome
