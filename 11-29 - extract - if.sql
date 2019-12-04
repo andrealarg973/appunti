@@ -80,3 +80,15 @@ SELECT
 	SUM(IF(sex='F',1,0))/COUNT(*) AS percentuale_f
 FROM persone
 GROUP BY(data_nascita)
+-- 7. Visualizzare il codice ed il nominativo completo (miss nome cognome le donne,
+-- mister nome cognome gli uomini) degli impiegati che hanno cambiato di qualifica
+-- (tabella titles) esattamente 3 volte e che hanno lavorato o lavorano come
+-- manager di un dipartimento.
+SELECT 
+	e.emp_no,
+	CONCAT(IF(e.gender = 'M', 'Mister', 'Miss'), ' ', e.first_name, ' ', e.last_name) as nominativo
+FROM employees as e
+WHERE (SELECT COUNT(*)
+	   FROM titles as t
+	   WHERE t.emp_no=e.emp_no
+	   GROUP BY t.emp_no) = 3
