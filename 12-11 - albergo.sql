@@ -39,7 +39,20 @@ FROM alberghi AS a
 WHERE 
 	  a.città = "Belluno" AND
 	  a.n_starts >= 3 AND 
-	  (SELECT s.posti_letto
+	  (SELECT SUM(s.posti_letto)
 	   FROM stanze AS s
 	   WHERE s.cod_albergo = a.cod_albergo
-	   AND s.area_condizionata = 1) >= 10
+	   AND s.area_condizionata IS TRUE) >= 10
+
+-- Creare una vista che per ogni albergo 
+CREATE VIEW v_alberghi_info AS
+SELECT
+	a.cod_albergo,
+	a.nome, 
+	...,
+	COUNT(s.n_stanza) AS tot_stanze,
+	SUM(s.posti_letto) AS tot_posti_letto,
+	SUM(IF(s.area_condizionata IS TRUE, s.posti_letto, 0)),
+FROM alberghi AS a
+JOIN stanze AS s ON a.cod_albergo = s.cod_albergo
+GROUP BY a.cod_albergo, a.nome, a.via, a.città -- > li scrivo tutti per poterli usare nel select
