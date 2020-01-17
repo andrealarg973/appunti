@@ -29,3 +29,25 @@ if($_SESSION['lingua'] == 'it')
 	include "main_it.php";
 }
 //I file di session in XAMPP vangono salvati di default nella cartella /temp
+
+//carrello.php?codProd=7985&action=inc/dec
+session_start();
+if(!isset($_GET['action'])) exit();
+if(!isset($_GET['codProd'])) exit();
+$cod_prod = $_GET['codProd'];
+$action = $_GET['action'];
+
+$carrito = $_SESSION['carrito']; #$carrito è una copia dell'array $_SESSION
+
+if($action == 'inc')
+{
+	if(isset($carrito[$cod_prod]))
+		$carrito[$cod_prod]++;
+	else
+		$carrito['codProd'] = 1;
+}
+if($action == 'dec')
+{
+	if(isset($carrito[$cod_prod]) && $carrito['codProd'] > 0)
+		$carrito[$cod_prod]--;
+}
