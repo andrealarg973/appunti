@@ -51,3 +51,9 @@ if($action == 'dec')
 	if(isset($carrito[$cod_prod]) && $carrito['codProd'] > 0)
 		$carrito[$cod_prod]--;
 }
+
+//Esempio logout
+session_start();
+/*...*/
+$_SESSION = [];
+session_destroy();
