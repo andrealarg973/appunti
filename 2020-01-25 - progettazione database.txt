@@ -1,0 +1,36 @@
+3 passi logici:
+	- Concettuale -> Diagramma entità e relazioni (o associazioni)
+	- Progettazione logica
+	- Progettazione fisica -> come vengono salvati i dati su disco (gestito dal DMBS)
+
+DIAGRAMMI ENTITA' E RELAZIONI (associazioni tra entità)
+
+				ENTITA'			-			RELAZIONI
+				+------------+
+nome		○--	|			 |
+cognome		○--	|			 | 
+cod_cli		•--	|			 | --> pallino pieno --> PER CHIAVI
+data_n		○-- |	CLIENTE	 |
+email		•-- |			 |
+indirizzo	○-- |			 | 
+	|			|			 |
+	|			+------------+
+scomponibile(attributo composto)
+						|
+						|
+					 +------+	
+					/		 \
+				   | possiede |(rombo)
+					\		 /
+					 +------+
+					 	|
+					 	|
+	(associazione di due chiavi)
+				 •	+------------+
+anno_emissione	-|-	|			 | 
+seriale			-+-	|	BUONO	 | 
+importo			○-- |	SCONTO	 |
+qr_code			○--	|			 |
+					+------------+
+
+ogni CLIENTE al massimo quanti BUONI SCONTO POSSIEDE? -> 1 o n
