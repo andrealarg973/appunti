@@ -65,3 +65,53 @@ SELECT
 FROM utenti AS u
 LEFT JOIN ordini AS o ON u.id_utent=o.id_utente
 GROUP BY u.id_utente, u.nome, u.cognome
+
+-- **********
+-- 2020-04-01
+-- **********
+/*
+Ogni persona ha più numeri di telefono e più indirizzi di posta elettronica
+
+persone(cf(pk), nome, cognome, sesso, ...)
+telefoni(cf, numero, ...) pk(cf, numero)
+email(cf, email, descrizione, ...) pk(cf, email)
+*/
+create view v_persone as
+select 
+	p.cf,
+	p.nome,
+	p.cognome,
+	p.sesso,
+	count(distinct t.numero) as n_numeri,
+	count(distinct e.email) as n_email
+from persone as p
+left join telefoni as t on t.cf = p.cf
+left join email as e on e.cf = p.cf
+group by p.cf, p.nome, p.cognome, p.sesso
+
+
+-- Media numeri telefoni e email in base al sesso
+select
+	p.sesso,
+	avg(p.n_numeri) as avg_numeri,
+	avg(p.n_email) as avg_email
+from v_persone as p
+group by p.sesso
+
+
+select
+	p.sesso,
+	avg(p.n_numeri) as avg_numeri,
+	avg(p.n_email) as avg_email
+	from (select 
+			p.cf,
+			p.nome,
+			p.cognome,
+			p.sesso,
+			count(distinct t.numero) as n_numeri,
+			count(distinct e.email) as n_email
+		from persone as p
+		left join telefoni as t on t.cf = p.cf
+		left join email as e on e.cf = p.cf
+		group by p.cf, p.nome, p.cognome, p.sesso) as p
+group by p.sesso
