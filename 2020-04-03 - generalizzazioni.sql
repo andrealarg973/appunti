@@ -1,6 +1,10 @@
 /*
 GENERALIZZAZIONI (specializzazioni)
 
+DIAGRAMMI EER => Enhanced(potenziato) Entity-Relationship
+
+
+ES. 1
  targa combustibile
  	•	○
 	|   |
@@ -26,6 +30,7 @@ sovrapposizioni/disgiunti:
 	- disgiunti: se un istanza non appartiene a più di una delle entità figlie
 
 
+ES. 2
 	  nome cognome
 		|   |  N		   1
 		PERSONA----abita----LUOGO -> entità che viene ereditata dalle specializz.
@@ -43,7 +48,7 @@ AZIENDA			  SCUOLA
 
 
 
-
+ES. 3
 		MEDICO
 		 /\
 		 ||
@@ -51,8 +56,40 @@ AZIENDA			  SCUOLA
 	|			|			 |		  |
 PEDIATRA	CHIRURGO	ORTOPEDICO	ALTRO
 
+ _______________________________________
+|										|
+|	TRADUZIONE DELLE GENERALIZZAZIONI	|
+|										|
+ ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+con es. 2:
+sol. 1 -> tabella per l'entità madre + tabelle per entità figlie, in queste foreign key alla primary key della tabella madre
+‾‾‾‾‾‾
+persone(pid(pk), nome cognome, ...)
+		   ^^
+		   ||
+studenti(pid(pk), scuola, matricola, ...)
+		   |
+		   |
+lavoratori(pid(pk), stipendio, ...)
+
+-- Per comodità creo una vista per essere più veloce per estrarre i dati
+CREATE VIEW v_studenti AS
+SELECT p.nome, p.cognome, ...
+FROM persone AS p
+JOIN studenti AS s on p.pid = s.pid -- JOIN e non LEFT JOIN per evitare di prendere le persone che sono nella tab scuola
+
+sol.2 -> una tabella unica con campi flag per sapere a che entità figlia appartiene una persona
+‾‾‾‾‾
+svantaggi: avrò potenzialmente molti campi nulli, che sprecano spazio
+
+persone(pid(pk), nome, cognome, is_studente, scuola, matricola, ..., is_lavoratore, stipendio, ...)
 
 
+sol.3 -> tabelle SOLO per le entità figlie dove si riportano gli attributi delle proprietà madre + quella della figlia
+‾‾‾‾‾
+svantaggi: NON si possono gestire le sovrapposizioni, perchè ci potrebbero essere dati della tabella madre doppi
 
+studenti(pid(pk), nome, cognome, scuola, matricola, ...)
 
-*/	
+lavoratori(pid(pk), nome, cognome, stipendio, ...)
+*/

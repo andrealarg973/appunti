@@ -6,12 +6,19 @@ Supponiamo di voler transferire una qta. di denaro da un conto corrente A ad un 
 3. aggiungere 500E al C/C B
 
 Quindi un TRANSAZIONE SQL è una sequenza di comand SQL(di tipo DML) che vengoono considerati
-ATOMICI nel senso che ii comandi vengono eseguiti uno dopo l'altro, ma dal punto
+ATOMICI nel senso che i comandi vengono eseguiti uno dopo l'altro, ma dal punto
 di vista logico vengono considerati come un'unica operazione che si conclude con
 due possibili stati: SUCCESS / FAILURE.
 In caso di success, le modifiche vengono rese effettive nel database
 In caso di failure, le modifiche vengono annullate e si ritorna alla situazione che
 c'era prima dell'inizio della transazione
+
+ACID
+
+ATOMICITA' -> i comandi vengono eseguiti uno dopo l'altro, ma dal punto di vista logico vengono considerati come un'unica operazione
+CONSISTENZA
+ISOLAMENTO -> Nel corso di una transazione, non si modifica il database, ma le modifiche sono visibili sono da chi le sta apportando
+D ?
 
 NB: In molti DBMS comandi DDL in una transazione comportano un COMMIT implicito
 

@@ -1,0 +1,16 @@
+Salatura -> aggiunta di stringa casuale alla password
+
+Potenziamento -> rendere lenta la funzione di calcolare l'hash
+
+In php:
+password_hash();
+password_verify();
+
+
+CTE -> Common Table Expression
+vista temporanea
+
+with [nome_tabella_temp] as (
+	[query])
+select *
+from [nome_tabella_temp]
